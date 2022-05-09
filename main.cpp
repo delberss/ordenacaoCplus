@@ -1,7 +1,35 @@
 #include <iostream>
 
 using namespace std;
+// ============================================================ //
+void quickSort(int *vetor, int inicio, int fim)
+{
+    int i = inicio;
+    int j = fim;
+    int pivot = vetor[(i + j) / 2];
+    int temporario;
 
+    while (i <= j)
+    {
+        while (vetor[i] < pivot)
+            i++;
+        while (vetor[j] > pivot)
+            j--;
+        if (i <= j)
+        {
+            temporario = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = temporario;
+            i++;
+            j--;
+        }
+    }
+    if (j > inicio)
+        quickSort(vetor, inicio, j);
+    if (i < fim)
+        quickSort(vetor, i, fim);
+}
+// ============================================================ //
 void merge(int *vetor, int baixo, int meio, int alto)
 {
     int temporario[alto + 1];
@@ -41,7 +69,7 @@ void mergeSort(int *vetor, int baixo, int alto)
     }
 }
 
-
+// ============================================================ //
 void selecao(int vet[],int n){
     // PEGA O PRIMEIRO ELEMENTO, ASSUME ELE COMO MENOR
     // VAI VASCULHANDO O RESTO DO VETOR PARA ACHAR QUAL O MENOR
@@ -63,6 +91,8 @@ void selecao(int vet[],int n){
     }
 }
 
+// ============================================================ //
+
 void insertionSort(int *vetor, int tamanho){
     // EXEMPLO JOGAR CARTAS,
     // VOCÊ PEGA A PRIMEIRA, E O RESTO, VC OLHA SE É MENOR QUE A QUE VOCE SELECIONOU, SE SIM, BOTA ATRAS
@@ -82,6 +112,8 @@ void insertionSort(int *vetor, int tamanho){
     }
 }
 
+// ============================================================ //
+
 void bubbleSort(int *vetor, int tamanhoVetor){
     int auxiliar;
     for(int i=0; i < tamanhoVetor; i++){
@@ -97,12 +129,15 @@ void bubbleSort(int *vetor, int tamanhoVetor){
     }
 };
 
+// ============================================================ //
+
 string imprimeVetor(int *vetor, int tamanhoVetor){
     for(int i=0; i < tamanhoVetor; i++){
         cout << vetor[i] << " ";
     }
 }
 
+// ============================================================ //
 int main(){
 
     int n=14;
@@ -111,8 +146,9 @@ int main(){
     //selecao(vet,n);
     //insertionSort(vet,n);
     //bubbleSort(vet,n);
+    //mergeSort(vet, 0, n - 1);
 
-    mergeSort(vet, 0, n - 1);
+    quickSort(vet, 0, n-1);
 
     imprimeVetor(vet, n);
 
