@@ -1,0 +1,3 @@
+C:/Users/delbe/Documents/Programacao/C++/ordenacaoParaGit/cmake-build-debug/CMakeFiles/ordenacaoParaGit.dir
+C:/Users/delbe/Documents/Programacao/C++/ordenacaoParaGit/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/delbe/Documents/Programacao/C++/ordenacaoParaGit/cmake-build-debug/CMakeFiles/rebuild_cache.dir
