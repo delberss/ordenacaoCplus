@@ -1,7 +1,53 @@
 #include <iostream>
 
 using namespace std;
+
+// ============================================================= //
+void heapify(int vetor[], int tam, int i)
+{
+    int largest = i; // Initialize largest as root
+    int l = 2*i + 1; // left = 2*i + 1
+    int r = 2*i + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < tam && vetor[l] > vetor[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < tam && vetor[r] > vetor[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i)
+    {
+        swap(vetor[i], vetor[largest]);
+
+        // Recursively heapify the affected sub-tree
+        heapify(vetor, tam, largest);
+    }
+}
+
+// main function to do heap sort
+void heapSort(int vetor[], int tam)
+{
+    // Build heap (rearrange array)
+    for (int i = tam / 2 - 1; i >= 0; i--)
+        heapify(vetor, tam, i);
+
+    // One by one extract an element from heap
+    for (int i=tam-1; i>=0; i--)
+    {
+        // Move current root to end
+        swap(vetor[0], vetor[i]);
+
+        // call max heapify on the reduced heap
+        heapify(vetor, i, 0);
+    }
+}
+
+
 // ============================================================ //
+
 void quickSort(int *vetor, int inicio, int fim)
 {
     int i = inicio;
@@ -147,8 +193,9 @@ int main(){
     //insertionSort(vet,n);
     //bubbleSort(vet,n);
     //mergeSort(vet, 0, n - 1);
+    //quickSort(vet, 0, n-1);
 
-    quickSort(vet, 0, n-1);
+    heapSort(vet, n);
 
     imprimeVetor(vet, n);
 
